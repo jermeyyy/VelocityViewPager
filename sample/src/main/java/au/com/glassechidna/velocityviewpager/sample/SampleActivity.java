@@ -1,19 +1,12 @@
 package au.com.glassechidna.velocityviewpager.sample;
 
-import java.util.Comparator;
-import java.util.Locale;
-import java.util.Random;
-
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,9 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Comparator;
+import java.util.Locale;
+import java.util.Random;
+
 import au.com.glassechidna.velocityviewpager.VelocityViewPager;
 
-public class SampleActivity extends ActionBarActivity {
+public class SampleActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -50,7 +47,7 @@ public class SampleActivity extends ActionBarActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (VelocityViewPager) findViewById(R.id.pager);
+        mViewPager = findViewById(R.id.pager);
         mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setPageTransformer(false, new PageTransformer());
@@ -60,7 +57,7 @@ public class SampleActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.sample, menu);
         return true;
@@ -78,7 +75,6 @@ public class SampleActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -133,7 +129,7 @@ public class SampleActivity extends ActionBarActivity {
                 factor *= factor;
                 float factorComplement = 1.0f - factor;
 
-                float scale =  factorComplement * (MAX_SCALE - MIN_SCALE) + MIN_SCALE;
+                float scale = factorComplement * (MAX_SCALE - MIN_SCALE) + MIN_SCALE;
                 view.setScaleX(scale);
                 view.setScaleY(scale);
 
@@ -190,9 +186,9 @@ public class SampleActivity extends ActionBarActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
+                                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_sample, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            TextView textView = rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.title_section, getArguments().getInt(ARG_SECTION_NUMBER)));
             textView.setTextSize(24.0f);
 
